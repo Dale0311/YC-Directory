@@ -8,9 +8,10 @@ import { Button } from "./ui/button";
 
 const Navbar = async () => {
   const session = await auth();
+
   return (
     <header>
-      <nav className="flex justify-between py-2 px-4">
+      <nav className="flex-between p-4">
         <div>
           <Link href="/">
             <Image src="/logo.png" alt="logo" width={144} height={30} />
@@ -26,12 +27,12 @@ const Navbar = async () => {
               </Link>
 
               <form action={logOut}>
-                <Button className="cursor-pointer" type="submit">
-                  <span>Log Out</span>
-                </Button>
+                <button className="cursor-pointer" type="submit">
+                  <span>Logout</span>
+                </button>
               </form>
-              <Link href={`/user/${session?.user?.id}`}>
-                <Avatar>
+              <Link href={`/users/${session?.user?.id}`}>
+                <Avatar className="size-10">
                   <AvatarImage src={session?.user?.image || ""} />
                   <AvatarFallback>User Avatar</AvatarFallback>
                 </Avatar>
@@ -39,9 +40,9 @@ const Navbar = async () => {
             </div>
           ) : (
             <form action={logIn}>
-              <Button className="cursor-pointer" type="submit">
-                <span>Log in</span>
-              </Button>
+              <button className="cursor-pointer" type="submit">
+                <span>Login</span>
+              </button>
             </form>
           )}
         </div>
