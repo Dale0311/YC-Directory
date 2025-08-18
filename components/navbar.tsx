@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { logIn, logOut } from "@/app/actions";
+import { logIn, logOut } from "@/lib/actions";
 import { Button } from "./ui/button";
 
 const Navbar = async () => {

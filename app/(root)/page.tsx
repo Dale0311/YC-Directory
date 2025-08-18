@@ -1,4 +1,6 @@
 import SearchForm from "@/components/SearchForm";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
+import { startupCardData } from "@/lib/temp";
 import React from "react";
 
 const Page = async ({
@@ -6,10 +8,12 @@ const Page = async ({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
-  const results = (await searchParams).query;
-
+  const query = (await searchParams).query;
+  // placeholder data
+  const posts = startupCardData;
   return (
     <>
+      {/* hero section */}
       <section className="pink_container pattern">
         <h1 className="heading">
           Pitch your idea, <br /> Connect with entrepreneurs
@@ -20,7 +24,24 @@ const Page = async ({
         </p>
 
         {/* search form */}
-        <SearchForm query={results} />
+        <SearchForm query={query} />
+      </section>
+
+      {/* startups section */}
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? `Search results for "${query}"` : "All Startups"}
+        </p>
+
+        <ul className="mt-7 card_grid">
+          {posts?.length > 0 ? (
+            posts.map((post: StartupCardType) => (
+              <StartupCard key={post?._id} post={post} />
+            ))
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
+        </ul>
       </section>
     </>
   );
