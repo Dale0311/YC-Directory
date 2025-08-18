@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@import "tailwindcss";
-@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
 @reference "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -46,7 +46,7 @@
 
   /* EXTENSIONS */
   /* font */
-  --font-work-sans: var(--font-work-sans, "Work Sans", sans-serif);
+  --font-work-sans: var(--font-work-sans, 'Work Sans', sans-serif);
 
   /* colors */
   --color-custom-primary: var(--color-custom-primary);
@@ -115,9 +115,9 @@
   --color-custom-white: #ffffff;
 
   /* box shadow */
-  --shadow-boxShadow: "2px 2px 0px 0px rgb(0, 0, 0)";
-  --shadow-boxShadow2: "2px 2px 0px 2px rgb(0, 0, 0)";
-  --shadow-boxShadow3: "2px 2px 0px 2px rgb(238, 43, 105)";
+  --shadow-boxShadow: '2px 2px 0px 0px rgb(0, 0, 0)';
+  --shadow-boxShadow2: '2px 2px 0px 2px rgb(0, 0, 0)';
+  --shadow-boxShadow3: '2px 2px 0px 2px rgb(238, 43, 105)';
 }
 
 .dark {
@@ -299,7 +299,7 @@
 
   /* startupcard */
   .startup-card {
-    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] hover:border-primary transition-all duration-500 hover:shadow-[boxShadow3] hover:bg-[custom-primary1];
+    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] hover:border-custom-primary transition-all duration-500 hover:shadow-boxShadow3 hover:bg-custom-primary1;
   }
 
   .startup-card_date {
