@@ -1,7 +1,13 @@
 import SearchForm from "@/components/SearchForm";
 import React from "react";
 
-const Page = () => {
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) => {
+  const results = (await searchParams).query;
+
   return (
     <>
       <section className="pink_container pattern">
@@ -14,7 +20,7 @@ const Page = () => {
         </p>
 
         {/* search form */}
-        <SearchForm />
+        <SearchForm query={results} />
       </section>
     </>
   );
