@@ -1,9 +1,8 @@
 import SearchForm from '@/components/SearchForm';
-import StartupCard, { StartupCardType } from '@/components/StartupCard';
-import { startupCardData } from '@/lib/temp';
-import { client } from '@/sanity/lib/client';
-import { STARTUPS_QUERY } from '@/sanity/lib/queries';
-import React from 'react';
+import { StartupCardSkeleton } from '@/components/StartupCard';
+import StartupCards from '@/components/StartupCards';
+
+import React, { Suspense } from 'react';
 
 const Page = async ({
   searchParams,
@@ -11,9 +10,7 @@ const Page = async ({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
   const query = (await searchParams).query;
-  const posts = await client.fetch(STARTUPS_QUERY);
-  // placeholder data
-  // const posts = startupCardData;
+
   return (
     <>
       {/* hero section */}
@@ -36,15 +33,10 @@ const Page = async ({
           {query ? `Search results for "${query}"` : 'All Startups'}
         </p>
 
-        <ul className='mt-7 card_grid'>
-          {posts?.length > 0 ? (
-            posts.map((post: StartupCardType) => (
-              <StartupCard key={post?._id} post={post} />
-            ))
-          ) : (
-            <p className='no-results'>No startups found</p>
-          )}
-        </ul>
+        {/* Load Skeleton while fetching data */}
+        <Suspense fallback={<StartupCardSkeleton />}>
+          <StartupCards />
+        </Suspense>
       </section>
     </>
   );
