@@ -1,4 +1,4 @@
-import SearchForm from '@/components/SearchForm';
+import SearchForm from '@/components/searchform/SearchForm';
 import { StartupCardSkeleton } from '@/components/StartupCard';
 import StartupCards from '@/components/StartupCards';
 
@@ -35,7 +35,7 @@ const Page = async ({
 
         {/* Load Skeleton while fetching data */}
         <Suspense fallback={<StartupCardSkeleton />}>
-          <StartupCards />
+          <StartupCards query={query} />
         </Suspense>
       </section>
     </>
