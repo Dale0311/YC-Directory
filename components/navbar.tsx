@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { logIn, logOut } from '@/lib/actions';
-import { Button } from './ui/button';
 
 const Navbar = async () => {
   const session = await auth();
@@ -22,7 +21,7 @@ const Navbar = async () => {
         <div>
           {session ? (
             <div className='flex justify-between items-center gap-4'>
-              <Link href='/startup/create'>
+              <Link href='/startups/create'>
                 <span>Create</span>
               </Link>
 

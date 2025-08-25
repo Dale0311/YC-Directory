@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar";
-import React, { ReactNode } from "react";
+import Navbar from '@/components/Navbar';
+import React, { ReactNode } from 'react';
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (

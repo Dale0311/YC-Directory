@@ -1,12 +1,19 @@
 import React from 'react';
 import StartupCard, { StartupCardType } from '@/components/StartupCard';
 
-import { getStartups } from '@/lib/actions';
+import { sanityFetch } from '@/sanity/lib/live';
+import { STARTUPS_QUERY } from '@/sanity/lib/queries';
 
 const StartupCards = async ({ query }: { query: string | undefined }) => {
-  // const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY }); //posts are updated whenever the data changes in our database
+  const params = {
+    search: query || null,
+  };
 
-  const posts = await getStartups(query);
+  const { data: posts } = await sanityFetch({
+    query: STARTUPS_QUERY,
+    params,
+  }); //posts are updated whenever the data changes in our database
+
   return (
     <ul className='mt-7 card_grid'>
       {posts?.length > 0 ? (
