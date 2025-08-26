@@ -24,4 +24,5 @@ export const STARTUP_QUERY_BY_ID = `*[_type == "startup" && _id == $id][0]{
     description,
     category,
     image,
+    pitch
 }`;
