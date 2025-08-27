@@ -7,9 +7,6 @@ import { useFormStatus } from 'react-dom';
 
 const SearchFormButton = () => {
   const status = useFormStatus();
-
-  console.log(status);
-
   return (
     <Button
       type='submit'

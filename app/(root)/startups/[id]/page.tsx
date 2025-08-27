@@ -7,20 +7,20 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import markdownit from 'markdown-it';
 
+const md = markdownit();
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const post = await client.fetch(STARTUP_QUERY_BY_ID, { id });
   if (!post) notFound();
 
-  console.log(post);
-
-  const md = markdownit();
   const parsedContent = md.render(post?.pitch || '');
+
+  console.log(parsedContent);
+
   return (
     <>
       <section className='pink_container !min-h-[230px]'>
         <p className='tag tag-tri'>{formatDate(post?._createdAt)}</p>
-
         <h1 className='heading'>{post.title}</h1>
         <p className='sub-heading !max-w-5xl'>{post.description}</p>
       </section>
