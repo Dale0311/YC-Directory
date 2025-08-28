@@ -6,16 +6,16 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import markdownit from 'markdown-it';
+import View from '@/components/View';
 
 const md = markdownit();
+
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const post = await client.fetch(STARTUP_QUERY_BY_ID, { id });
   if (!post) notFound();
 
   const parsedContent = md.render(post?.pitch || '');
-
-  console.log(parsedContent);
 
   return (
     <>
@@ -65,6 +65,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           ) : (
             <p className='no-result'>No details provided</p>
           )}
+
+          {/* TODO: Implement startup suggestion cards base on categorty/popularity */}
+          <View id={post?._id || ''} />
         </div>
       </section>
     </>

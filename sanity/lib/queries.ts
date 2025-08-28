@@ -26,3 +26,8 @@ export const STARTUP_QUERY_BY_ID = `*[_type == "startup" && _id == $id][0]{
     image,
     pitch
 }`;
+
+export const STARTUP_VIEWS_QUERY_BY_ID = `*[_type == "startup" && _id == $id][0]{
+    views,
+    _id
+}`;
