@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import markdownit from 'markdown-it';
 import View from '@/components/View';
+import IncrementViews from './IncrementViews';
 
 const md = markdownit();
 
@@ -68,6 +69,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
           {/* TODO: Implement startup suggestion cards base on categorty/popularity */}
           <View id={post?._id || ''} />
+
+          {/* increment the views count */}
+          <IncrementViews id={post?._id || ''} />
         </div>
       </section>
     </>
@@ -75,3 +79,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default Page;
+
+/**
+ * Currently this is unstable because the views count continously incrementing
+ * Possible solutions:
+ * 1. create a route where the views increment whenever that route is hit
+ * 2. useEffect + server action? I choose this approach because I'm lazy :)
+ * */
