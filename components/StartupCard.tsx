@@ -34,14 +34,14 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
       <div className='flex-between mt-5 gap-5'>
         <div className='flex-1'>
-          <Link href={`/users/${author?._id}`}>
+          <Link href={`/users/${author?.id}`}>
             <p className='text-16-medium line-clamp-1'>{author?.name}</p>
           </Link>
           <Link href={`/startups/${_id}`}>
             <h3 className='text-26-semibold line-clamp-1'>{title}</h3>
           </Link>
         </div>
-        <Link href={`/users/${author?._id}`}>
+        <Link href={`/users/${author?.id}`}>
           <Avatar className='size-12'>
             <AvatarImage
               src={author?.image || 'https://placehold.co/100x100?text=sample'}
@@ -73,7 +73,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
 export const StartupCardSkeleton = () => (
   <ul className='mt-7 card_grid'>
-    {[0, 1, 2, 3, 4].map((index: number) => (
+    {[0, 1, 2].map((index: number) => (
       <li key={cn('skeleton', index)}>
         <Skeleton className='startup-card_skeleton' />
       </li>
