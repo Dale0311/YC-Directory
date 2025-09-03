@@ -9,9 +9,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ user: { email, name, image }, profile }) {
       // check if the github user already have an account
-      const existingUser = await client.fetch(AUTHOR_BY_GITHUB_ID, {
-        id: profile?.id,
-      });
+      const existingUser = await client
+        .withConfig({ useCdn: false })
+        .fetch(AUTHOR_BY_GITHUB_ID, {
+          id: profile?.id,
+        });
       // if not create one
       if (!existingUser) {
         await writeClient.create({
@@ -29,7 +31,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async jwt({ token, profile, account }) {
       if (profile && account) {
-        token.id = profile?.id;
+        const user = await client
+          .withConfig({ useCdn: false })
+          .fetch(AUTHOR_BY_GITHUB_ID, {
+            id: profile?.id,
+          });
+
+        token.id = user?._id;
       }
       return token;
     },

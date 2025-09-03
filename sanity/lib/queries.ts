@@ -33,3 +33,4 @@ export const STARTUP_VIEWS_QUERY_BY_ID = `*[_type == "startup" && _id == $id][0]
 }`;
 
 export const AUTHOR_BY_GITHUB_ID = `*[_type == "author" && id == $id][0]`;
+export const AUTHOR_BY_ID = `*[_type == "author" && _id == $id][0]`;
