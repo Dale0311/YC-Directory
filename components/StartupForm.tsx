@@ -9,6 +9,9 @@ import MDEditor from '@uiw/react-md-editor';
 import { useRouter } from 'next/navigation';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import { toast } from 'sonner';
+import { formSchema } from '@/lib/validation';
+import { createPitch } from '@/lib/actions';
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -16,7 +19,6 @@ const StartupForm = () => {
   const router = useRouter();
 
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
-    return;
     try {
       const formValues = {
         title: formData.get('title') as string,
@@ -31,12 +33,8 @@ const StartupForm = () => {
       const result = await createPitch(prevState, formData, pitch);
 
       if (result.status == 'SUCCESS') {
-        toast({
-          title: 'Success',
-          description: 'Your startup pitch has been created successfully',
-        });
-
-        router.push(`/startup/${result._id}`);
+        toast.success('Your pitch has been submitted successfully');
+        router.push(`/startups/${result._id}`);
       }
 
       return result;
@@ -46,20 +44,12 @@ const StartupForm = () => {
 
         setErrors(fieldErorrs as unknown as Record<string, string>);
 
-        toast({
-          title: 'Error',
-          description: 'Please check your inputs and try again',
-          variant: 'destructive',
-        });
+        toast.error('Please check your inputs and try again');
 
         return { ...prevState, error: 'Validation failed', status: 'ERROR' };
       }
 
-      toast({
-        title: 'Error',
-        description: 'An unexpected error has occurred',
-        variant: 'destructive',
-      });
+      toast.error('An unexpected error has occurred');
 
       return {
         ...prevState,

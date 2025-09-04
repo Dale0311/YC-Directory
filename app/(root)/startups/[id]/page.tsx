@@ -67,7 +67,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <p className='no-result'>No details provided</p>
           )}
 
-          {/* TODO: Implement startup suggestion cards base on categorty/popularity */}
+          {/* TODO: Implement startup suggestion cards base on category/popularity */}
           <View id={post?._id || ''} />
 
           {/* increment the views count */}

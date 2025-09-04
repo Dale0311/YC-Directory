@@ -13,3 +13,8 @@ export function formatDate(dateString: string): string {
     day: 'numeric',
   }).format(date);
 }
+
+// This function helps to serialize the response from server actions
+export const parseServerActionResponse = <T>(response: T) => {
+  return JSON.parse(JSON.stringify(response));
+};
