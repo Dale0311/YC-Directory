@@ -19,7 +19,7 @@ export const STARTUP_QUERY_BY_ID = `*[_type == "startup" && _id == $id][0]{
     title,
     slug,
     _createdAt,
-    author -> {id, name, username, bio, image},
+    author -> {_id, name, username, bio, image},
     views,
     description,
     category,

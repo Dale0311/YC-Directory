@@ -18,6 +18,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const parsedContent = md.render(post?.pitch || '');
 
+  console.log(post);
+
   return (
     <>
       <section className='pink_container !min-h-[230px]'>
